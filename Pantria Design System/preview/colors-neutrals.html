@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Colors — Neutrals</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 24px; background: var(--color-surface); }
+  .row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
+  .swatch { border-radius: var(--radius-md); padding: 12px 12px; height: 110px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--color-border); }
+  .swatch .name { font-size: 12px; font-weight: 600; }
+  .swatch .hex { font-family: ui-monospace, monospace; font-size: 11px; opacity: 0.85; }
+  .light { color: #fff; border-color: transparent; }
+  .dark { color: var(--color-text); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="swatch light" style="background: var(--color-text);"><div class="name">Text</div><div class="hex">#111827</div></div>
+    <div class="swatch light" style="background: var(--color-text-muted);"><div class="name">Muted</div><div class="hex">#6B7280</div></div>
+    <div class="swatch light" style="background: var(--color-text-subtle);"><div class="name">Subtle</div><div class="hex">#9CA3AF</div></div>
+    <div class="swatch dark" style="background: var(--color-border-strong);"><div class="name">Border 2</div><div class="hex">#D1D5DB</div></div>
+    <div class="swatch dark" style="background: var(--color-border);"><div class="name">Border</div><div class="hex">#E5E7EB</div></div>
+    <div class="swatch dark" style="background: var(--color-bg);"><div class="name">Bg</div><div class="hex">#F8FAFC</div></div>
+  </div>
+</body>
+</html>

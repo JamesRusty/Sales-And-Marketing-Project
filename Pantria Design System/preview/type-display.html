@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Display type</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 22px 26px; background: var(--color-surface); display: flex; flex-direction: column; gap: 18px; }
+  .row { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: baseline; }
+  .meta { font-family: ui-monospace, monospace; font-size: 11px; color: var(--color-text-muted); white-space: nowrap; text-align: right; }
+  .meta b { display: block; font-family: var(--font-sans); font-weight: 700; color: var(--color-text); margin-bottom: 2px; font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .display { font-family: 'Fraunces', Georgia, serif; color: var(--color-text); }
+  .body-sample { font-family: 'Inter', sans-serif; color: var(--color-text-muted); }
+  hr { border: none; border-top: 1px dashed var(--color-border); margin: 4px 0; }
+  .pairing { padding: 18px 0; }
+  .pairing h2 { margin: 0 0 8px; font-family: 'Fraunces', Georgia, serif; font-size: 32px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
+  .pairing p { margin: 0; font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.55; color: var(--color-text-muted); max-width: 520px; }
+</style>
+</head>
+<body>
+
+  <!-- Display headings (Fraunces serif) -->
+  <div class="row">
+    <div class="display" style="font-size: 56px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.05;">Stocked weekly</div>
+    <div class="meta"><b>Fraunces</b>56 / 700 / -0.02em</div>
+  </div>
+  <div class="row">
+    <div class="display" style="font-size: 40px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1;">Fresh, fast, fair pricing</div>
+    <div class="meta"><b>Fraunces</b>40 / 700 / -0.02em</div>
+  </div>
+  <div class="row">
+    <div class="display" style="font-size: 28px; font-weight: 600; letter-spacing: -0.01em;">Featured this week</div>
+    <div class="meta"><b>Fraunces</b>28 / 600</div>
+  </div>
+
+  <hr>
+
+  <!-- Pairing example: heading + body -->
+  <div class="pairing">
+    <h2>Buy 5 sacks of rice, save ₱200.</h2>
+    <p>Restocks every Monday and Thursday. Free delivery within Metro Manila on orders over ₱2,000.</p>
+    <div class="meta" style="text-align: left; margin-top: 10px;"><b>Pairing</b>Fraunces heading · Inter body</div>
+  </div>
+
+</body>
+</html>

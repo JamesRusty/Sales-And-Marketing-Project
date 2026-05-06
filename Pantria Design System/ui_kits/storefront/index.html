@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pantria — Storefront UI Kit</title>
+<link rel="stylesheet" href="../../colors_and_type.css">
+<style>
+  body { margin: 0; }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="components-core.jsx"></script>
+<script type="text/babel" src="components-shop.jsx"></script>
+<script type="text/babel" src="screens.jsx"></script>
+<script type="text/babel">
+const { useState } = React;
+
+function App() {
+  const [screen, setScreen] = useState('home');
+  const [cart, setCart] = useState([{ ...PRODUCTS[0], qty: 2 }, { ...PRODUCTS[3], qty: 6 }]);
+  const [cartOpen, setCartOpen] = useState(false);
+  const [activeProduct, setActiveProduct] = useState(PRODUCTS[0]);
+
+  const addToCart = (p, qty = 1) => {
+    setCart(c => {
+      const existing = c.find(x => x.id === p.id);
+      if (existing) return c.map(x => x.id === p.id ? { ...x, qty: x.qty + qty } : x);
+      return [...c, { ...p, qty }];
+    });
+    setCartOpen(true);
+  };
+  const removeItem = id => setCart(c => c.filter(x => x.id !== id));
+  const openProduct = (p) => { setActiveProduct(p); setScreen('product'); };
+  const cartCount = cart.reduce((s,i) => s + i.qty, 0);
+
+  return (
+    <div data-screen-label={`Storefront — ${screen}`}>
+      <Nav screen={screen} setScreen={setScreen} cartCount={cartCount} openCart={() => setCartOpen(true)}/>
+      {screen === 'home' && <HomeScreen setScreen={setScreen} addToCart={addToCart} openProduct={openProduct}/>}
+      {screen === 'shop' && <ShopScreen addToCart={addToCart} openProduct={openProduct}/>}
+      {screen === 'product' && <ProductScreen product={activeProduct} addToCart={addToCart} setScreen={setScreen}/>}
+      {screen === 'checkout' && <CheckoutScreen cart={cart} setScreen={setScreen}/>}
+      {screen === 'tracking' && <TrackingScreen setScreen={setScreen}/>}
+      {screen === 'about' && <AboutScreen/>}
+      {screen === 'contact' && <ContactScreen/>}
+      {screen === 'wholesale' && <WholesaleScreen/>}
+      <Footer/>
+      <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} cart={cart} removeItem={removeItem} setScreen={setScreen}/>
+      <MessengerFab/>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>

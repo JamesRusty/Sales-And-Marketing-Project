@@ -1,0 +1,32 @@
+# Sketchpad / working files (not deliverables)
+scraps/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs / temp
+*.log
+.cache/
+.tmp/
+tmp/
+
+# Node (in case you add tooling later)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-store/
+
+# Env
+.env
+.env.local
+.env.*.local

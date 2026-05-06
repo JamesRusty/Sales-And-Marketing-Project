@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Balanced Color Set</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--color-bg); display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .group { background: #fff; border-radius: 14px; padding: 14px; border: 1px solid var(--color-border); display: flex; flex-direction: column; gap: 10px; }
+  .role { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-muted); }
+  .lead { display: flex; align-items: center; gap: 10px; }
+  .chip { width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0; }
+  .meta { display: flex; flex-direction: column; gap: 1px; }
+  .name { font-size: 13px; font-weight: 700; color: var(--color-text); }
+  .hex { font-family: ui-monospace, monospace; font-size: 11px; color: var(--color-text-muted); }
+  .scale { display: flex; gap: 4px; height: 22px; border-radius: 6px; overflow: hidden; }
+  .scale > div { flex: 1; }
+  .demo { padding: 10px 12px; border-radius: 10px; font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+  .note { font-size: 11px; color: var(--color-text-muted); line-height: 1.4; }
+</style>
+</head>
+<body>
+
+  <!-- 1. PRIMARY — Brand green -->
+  <div class="group">
+    <div class="role">Primary · Brand</div>
+    <div class="lead">
+      <div class="chip" style="background: #15803D;"></div>
+      <div class="meta"><span class="name">Forest green</span><span class="hex">#15803D</span></div>
+    </div>
+    <div class="scale">
+      <div style="background: #14532D;"></div>
+      <div style="background: #166534;"></div>
+      <div style="background: #15803D;"></div>
+      <div style="background: #DCFCE7;"></div>
+      <div style="background: #F0FDF4;"></div>
+    </div>
+    <div class="demo" style="background: #DCFCE7; color: #14532D;">Pantria · logo + nav</div>
+    <div class="note">Brand mark, links, navigation, success state.</div>
+  </div>
+
+  <!-- 2. SECONDARY — Slate / charcoal for balance -->
+  <div class="group">
+    <div class="role">Secondary · Text</div>
+    <div class="lead">
+      <div class="chip" style="background: #1F2937;"></div>
+      <div class="meta"><span class="name">Slate</span><span class="hex">#1F2937</span></div>
+    </div>
+    <div class="scale">
+      <div style="background: #111827;"></div>
+      <div style="background: #1F2937;"></div>
+      <div style="background: #6B7280;"></div>
+      <div style="background: #E5E7EB;"></div>
+      <div style="background: #F8FAFC;"></div>
+    </div>
+    <div class="demo" style="background: #1F2937; color: #fff;">Headings · Body · Borders</div>
+    <div class="note">Type color, dark UI surfaces, structure.</div>
+  </div>
+
+  <!-- 3. BUTTON / CTA — Action color -->
+  <div class="group">
+    <div class="role">Button · CTA</div>
+    <div class="lead">
+      <div class="chip" style="background: #15803D;"></div>
+      <div class="meta"><span class="name">Action green</span><span class="hex">#15803D → #166534</span></div>
+    </div>
+    <div class="scale">
+      <div style="background: #15803D;"></div>
+      <div style="background: #166534; outline: 2px solid #fff; outline-offset: -2px;"></div>
+      <div style="background: #14532D;"></div>
+      <div style="background: #DCFCE7;"></div>
+      <div style="background: rgba(21,128,61,0.20);"></div>
+    </div>
+    <div class="demo" style="background: #15803D; color: #fff;">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      Add to cart
+    </div>
+    <div class="note">Default · hover (dark) · pressed · focus ring.</div>
+  </div>
+
+  <!-- 4. ACCENT — Promo amber -->
+  <div class="group">
+    <div class="role">Accent · Promo</div>
+    <div class="lead">
+      <div class="chip" style="background: #F59E0B;"></div>
+      <div class="meta"><span class="name">Amber</span><span class="hex">#F59E0B</span></div>
+    </div>
+    <div class="scale">
+      <div style="background: #B45309;"></div>
+      <div style="background: #D97706;"></div>
+      <div style="background: #F59E0B;"></div>
+      <div style="background: #FEF3C7;"></div>
+      <div style="background: #FFFBEB;"></div>
+    </div>
+    <div class="demo" style="background: #FEF3C7; color: #92400E;">−15% · Sale · ₱899</div>
+    <div class="note">Promos, sale prices, urgency — used sparingly.</div>
+  </div>
+
+</body>
+</html>

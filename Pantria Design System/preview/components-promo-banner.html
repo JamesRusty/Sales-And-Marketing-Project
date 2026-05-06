@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Promo Banner</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 24px; background: var(--color-surface); display: flex; flex-direction: column; gap: 12px; }
+  .banner { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border-radius: var(--radius-lg); }
+  .banner-promo { background: var(--color-accent-soft); color: var(--color-text); }
+  .banner-info { background: var(--color-primary-soft); color: var(--color-primary-darker); }
+  .banner-bulk { background: var(--color-info-soft); color: var(--color-info); }
+  .left { display: flex; align-items: center; gap: 14px; }
+  .icon { width: 28px; height: 28px; flex-shrink: 0; }
+  .title { font-size: 15px; font-weight: 700; }
+  .sub { font-size: 13px; opacity: 0.85; margin-top: 2px; }
+  .cta { font-weight: 600; font-size: 13px; text-decoration: none; padding: 8px 14px; background: rgba(255,255,255,0.5); border-radius: var(--radius-pill); color: inherit; }
+</style>
+</head>
+<body>
+  <div class="banner banner-promo">
+    <div class="left">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41 13.42 20.58a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82Z"/><path d="M7 7h.01"/></svg>
+      <div><div class="title">Buy 5 sacks of rice, save ₱200</div><div class="sub">Ends Sunday — auto-applied at checkout.</div></div>
+    </div>
+    <a href="#" class="cta">Shop rice →</a>
+  </div>
+  <div class="banner banner-info">
+    <div class="left">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
+      <div><div class="title">Free delivery within Metro Manila</div><div class="sub">On orders over ₱2,000.</div></div>
+    </div>
+  </div>
+</body>
+</html>

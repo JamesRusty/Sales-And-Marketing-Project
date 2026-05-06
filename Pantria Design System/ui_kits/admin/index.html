@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pantria — Admin UI Kit</title>
+<link rel="stylesheet" href="../../colors_and_type.css">
+<style>
+  body { margin: 0; background: var(--color-bg); }
+  .app { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+  .sidebar { background: var(--color-surface); border-right: 1px solid var(--color-border); padding: 20px 14px; display: flex; flex-direction: column; gap: 4px; position: sticky; top: 0; height: 100vh; }
+  .brand { padding: 8px 10px 24px; }
+  .nav-item { display: flex; align-items: center; gap: 12px; padding: 9px 12px; border-radius: 10px; font-size: 14px; font-weight: 500; color: var(--color-text); cursor: pointer; transition: background 150ms; }
+  .nav-item:hover { background: var(--color-surface-2); }
+  .nav-item.active { background: var(--color-primary-soft); color: var(--color-primary-darker); font-weight: 600; }
+  .nav-section { font-size: 11px; font-weight: 700; color: var(--color-text-subtle); letter-spacing: 0.08em; text-transform: uppercase; padding: 16px 12px 6px; }
+  .topbar { display: flex; justify-content: space-between; align-items: center; padding: 16px 32px; background: var(--color-surface); border-bottom: 1px solid var(--color-border); position: sticky; top: 0; z-index: 10; }
+  .h1 { font-size: 24px; font-weight: 700; letter-spacing: -0.01em; margin: 0; }
+  .subtle { color: var(--color-text-muted); font-size: 13px; }
+  .main { padding: 24px 32px 48px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .grid-2 { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; }
+  .card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 20px; }
+  .stat-label { font-size: 13px; color: var(--color-text-muted); font-weight: 500; }
+  .stat-value { font-size: 28px; font-weight: 700; letter-spacing: -0.01em; margin: 6px 0 4px; font-variant-numeric: tabular-nums; }
+  .delta { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 9999px; }
+  .delta-up { background: var(--color-success-soft); color: var(--color-success); }
+  .delta-down { background: var(--color-danger-soft); color: var(--color-danger); }
+  .card-h { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+  .card-h h3 { margin: 0; font-size: 15px; font-weight: 700; }
+  .link { color: var(--color-primary); font-size: 13px; font-weight: 600; cursor: pointer; }
+  .chart { display: flex; align-items: flex-end; gap: 10px; height: 200px; padding: 0 4px; }
+  .bar { flex: 1; background: linear-gradient(to top, var(--color-primary), var(--color-primary) 80%, var(--color-primary-soft)); border-radius: 6px 6px 0 0; position: relative; transition: opacity 150ms; }
+  .bar:hover { opacity: 0.85; }
+  .bar.accent { background: linear-gradient(to top, var(--color-accent), var(--color-accent) 80%, var(--color-accent-soft)); }
+  .x-axis { display: flex; gap: 10px; padding: 8px 4px 0; font-size: 11px; color: var(--color-text-muted); border-top: 1px solid var(--color-border); margin-top: 4px; }
+  .x-axis span { flex: 1; text-align: center; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { text-align: left; padding: 10px 12px; font-size: 11px; font-weight: 700; color: var(--color-text-muted); letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--color-border); }
+  td { padding: 14px 12px; border-bottom: 1px solid var(--color-border); }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--color-surface-2); }
+  .badge { display: inline-flex; padding: 3px 9px; border-radius: 9999px; font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+  .b-paid { background: var(--color-success-soft); color: var(--color-success); }
+  .b-pending { background: var(--color-warning-soft); color: var(--color-warning); }
+  .b-shipped { background: var(--color-info-soft); color: var(--color-info); }
+  .b-low { background: var(--color-danger-soft); color: var(--color-danger); }
+  .b-instock { background: var(--color-surface-2); color: var(--color-text-muted); }
+  .stock-bar { height: 6px; background: var(--color-surface-2); border-radius: 3px; overflow: hidden; width: 100px; }
+  .stock-bar > div { height: 100%; background: var(--color-primary); }
+  .stock-bar.low > div { background: var(--color-danger); }
+  .thumb { width: 36px; height: 36px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; vertical-align: middle; margin-right: 10px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 10px; font-weight: 600; font-size: 13px; border: none; cursor: pointer; font-family: var(--font-sans); }
+  .btn-primary { background: var(--color-primary); color: #fff; }
+  .btn-ghost { background: transparent; border: 1px solid var(--color-border); color: var(--color-text); }
+  .search { position: relative; }
+  .search input { padding: 9px 14px 9px 38px; width: 320px; background: var(--color-surface-2); border: 1px solid transparent; border-radius: 9999px; font-size: 13px; font-family: var(--font-sans); }
+  .search svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--color-text-muted); }
+</style>
+</head>
+<body>
+<div class="app" data-screen-label="Admin — Dashboard">
+  <aside class="sidebar">
+    <div class="brand"><span style="font-family: 'Inter', sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -0.02em; color: var(--color-primary);">Pantr<span style="color: var(--color-accent);">í</span>a</span><div style="font-size: 11px; color: var(--color-text-muted); margin-top: 2px;">Admin</div></div>
+    <div class="nav-section">Overview</div>
+    <a class="nav-item active"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>Dashboard</a>
+    <a class="nav-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>Analytics</a>
+    <div class="nav-section">Catalog</div>
+    <a class="nav-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 9.4 7.55 4.24"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>Products</a>
+    <a class="nav-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><path d="M2 10h20"/></svg>Inventory</a>
+    <a class="nav-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41 13.42 20.58a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82Z"/><path d="M7 7h.01"/></svg>Promos</a>
+    <div class="nav-section">Sales</div>
+    <a class="nav-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>Orders <span style="margin-left: auto; font-size: 11px; background: var(--color-accent); color: var(--color-text); padding: 1px 7px; border-radius: 9999px; font-weight: 700;">12</span></a>
+    <a class="nav-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Customers</a>
+    <a class="nav-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>Deliveries</a>
+    <div style="margin-top: auto; padding: 12px; border-top: 1px solid var(--color-border); display: flex; align-items: center; gap: 10px;">
+      <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--color-primary); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700;">JR</div>
+      <div style="font-size: 12px;"><div style="font-weight: 600;">James R.</div><div style="color: var(--color-text-muted);">Admin</div></div>
+    </div>
+  </aside>
+  <div>
+    <div class="topbar">
+      <div>
+        <h1 class="h1">Dashboard</h1>
+        <div class="subtle">Today, May 6 · Last 7 days</div>
+      </div>
+      <div style="display: flex; gap: 10px; align-items: center;">
+        <div class="search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input placeholder="Search products, orders, customers…">
+        </div>
+        <button class="btn btn-ghost"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></button>
+        <button class="btn btn-primary"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>New product</button>
+      </div>
+    </div>
+    <main class="main">
+      <div class="grid-4" style="margin-bottom: 16px;">
+        <div class="card">
+          <div class="stat-label">Revenue</div>
+          <div class="stat-value">₱248,310</div>
+          <span class="delta delta-up">▲ 12.4%</span>
+        </div>
+        <div class="card">
+          <div class="stat-label">Orders</div>
+          <div class="stat-value">186</div>
+          <span class="delta delta-up">▲ 8.1%</span>
+        </div>
+        <div class="card">
+          <div class="stat-label">Avg order value</div>
+          <div class="stat-value">₱1,335</div>
+          <span class="delta delta-down">▼ 2.0%</span>
+        </div>
+        <div class="card">
+          <div class="stat-label">Low-stock items</div>
+          <div class="stat-value" style="color: var(--color-danger);">7</div>
+          <span class="delta delta-down">▼ 3 since yesterday</span>
+        </div>
+      </div>
+      <div class="grid-2" style="margin-bottom: 16px;">
+        <div class="card">
+          <div class="card-h"><h3>Sales · last 7 days</h3><span class="link">View report →</span></div>
+          <div class="chart">
+            <div class="bar" style="height: 55%;"></div>
+            <div class="bar" style="height: 70%;"></div>
+            <div class="bar" style="height: 48%;"></div>
+            <div class="bar" style="height: 82%;"></div>
+            <div class="bar" style="height: 64%;"></div>
+            <div class="bar accent" style="height: 90%;"></div>
+            <div class="bar" style="height: 73%;"></div>
+          </div>
+          <div class="x-axis"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+        </div>
+        <div class="card">
+          <div class="card-h"><h3>Low stock alerts</h3><span class="link">All inventory →</span></div>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; gap: 12px; align-items: center;">
+              <div class="thumb" style="background: #FAF8EC; margin-right: 0;">🍚</div>
+              <div style="flex: 1;"><div style="font-weight: 600; font-size: 13px;">Premium jasmine rice, 25 kg</div><div style="font-size: 12px; color: var(--color-text-muted);">4 sacks left · reorder soon</div></div>
+              <span class="badge b-low">Low</span>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: center;">
+              <div class="thumb" style="background: #E8F1F8; margin-right: 0;">🐟</div>
+              <div style="flex: 1;"><div style="font-weight: 600; font-size: 13px;">Frozen tilapia, 1 kg</div><div style="font-size: 12px; color: var(--color-text-muted);">2 packs left</div></div>
+              <span class="badge b-low">Low</span>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: center;">
+              <div class="thumb" style="background: #FFEDE7; margin-right: 0;">🥫</div>
+              <div style="flex: 1;"><div style="font-weight: 600; font-size: 13px;">Sardines case of 24</div><div style="font-size: 12px; color: var(--color-text-muted);">6 cases left</div></div>
+              <span class="badge b-low">Low</span>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: center;">
+              <div class="thumb" style="background: #F0F4E8; margin-right: 0;">🫒</div>
+              <div style="flex: 1;"><div style="font-weight: 600; font-size: 13px;">Olive oil, 1 L</div><div style="font-size: 12px; color: var(--color-text-muted);">8 bottles left</div></div>
+              <span class="badge b-low">Low</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-h"><h3>Recent orders</h3><div style="display: flex; gap: 8px;"><button class="btn btn-ghost">Export</button><span class="link">View all →</span></div></div>
+        <table>
+          <thead><tr><th>Order</th><th>Customer</th><th>Items</th><th>Total</th><th>Status</th><th>Placed</th></tr></thead>
+          <tbody>
+            <tr><td><b>#PNT-7421</b></td><td>Maria Lopez<div class="subtle" style="font-size: 11px;">Household · Makati</div></td><td>3 items</td><td style="font-variant-numeric: tabular-nums; font-weight: 600;">₱2,450</td><td><span class="badge b-shipped">Shipped</span></td><td class="subtle">10:24 AM</td></tr>
+            <tr><td><b>#PNT-7420</b></td><td>Aling Mhel Sari-sari<div class="subtle" style="font-size: 11px;">Reseller · Pasig</div></td><td>12 items</td><td style="font-variant-numeric: tabular-nums; font-weight: 600;">₱18,720</td><td><span class="badge b-paid">Paid</span></td><td class="subtle">9:48 AM</td></tr>
+            <tr><td><b>#PNT-7419</b></td><td>Casa Carlo<div class="subtle" style="font-size: 11px;">Restaurant · QC</div></td><td>24 items</td><td style="font-variant-numeric: tabular-nums; font-weight: 600;">₱42,180</td><td><span class="badge b-pending">Pending</span></td><td class="subtle">9:12 AM</td></tr>
+            <tr><td><b>#PNT-7418</b></td><td>Ramos Family<div class="subtle" style="font-size: 11px;">Household · Bulacan</div></td><td>5 items</td><td style="font-variant-numeric: tabular-nums; font-weight: 600;">₱1,820</td><td><span class="badge b-paid">Paid</span></td><td class="subtle">Yesterday</td></tr>
+            <tr><td><b>#PNT-7417</b></td><td>Tindahan ni Aling Rose<div class="subtle" style="font-size: 11px;">Reseller · Cavite</div></td><td>18 items</td><td style="font-variant-numeric: tabular-nums; font-weight: 600;">₱24,680</td><td><span class="badge b-shipped">Shipped</span></td><td class="subtle">Yesterday</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card" style="margin-top: 16px;">
+        <div class="card-h"><h3>Top products this week</h3><span class="link">Manage products →</span></div>
+        <table>
+          <thead><tr><th>Product</th><th>Category</th><th>Sold</th><th>Stock</th><th>Revenue</th></tr></thead>
+          <tbody>
+            <tr><td><span class="thumb" style="background: #FAF8EC;">🍚</span><b>Premium jasmine rice, 25 kg</b></td><td class="subtle">Rice</td><td>48</td><td><div class="stock-bar low"><div style="width: 15%;"></div></div><div class="subtle" style="font-size: 11px; margin-top: 4px;">4 of 30</div></td><td style="font-variant-numeric: tabular-nums; font-weight: 600;">₱61,200</td></tr>
+            <tr><td><span class="thumb" style="background: #F1F5F9;">🥛</span><b>Fresh whole milk, 1 L</b></td><td class="subtle">Beverages</td><td>240</td><td><div class="stock-bar"><div style="width: 72%;"></div></div><div class="subtle" style="font-size: 11px; margin-top: 4px;">144 of 200</div></td><td style="font-variant-numeric: tabular-nums; font-weight: 600;">₱21,360</td></tr>
+            <tr><td><span class="thumb" style="background: #FFEDE7;">🥫</span><b>Sardines, case of 24</b></td><td class="subtle">Canned goods</td><td>32</td><td><div class="stock-bar low"><div style="width: 24%;"></div></div><div class="subtle" style="font-size: 11px; margin-top: 4px;">6 of 25</div></td><td style="font-variant-numeric: tabular-nums; font-weight: 600;">₱23,040</td></tr>
+            <tr><td><span class="thumb" style="background: #FAF6E8;">🥚</span><b>Farm fresh eggs, tray of 30</b></td><td class="subtle">Daily essentials</td><td>96</td><td><div class="stock-bar"><div style="width: 56%;"></div></div><div class="subtle" style="font-size: 11px; margin-top: 4px;">42 of 75</div></td><td style="font-variant-numeric: tabular-nums; font-weight: 600;">₱26,880</td></tr>
+            <tr><td><span class="thumb" style="background: #F0F4E8;">🫒</span><b>Olive oil, 1 L</b></td><td class="subtle">Cooking oil</td><td>22</td><td><div class="stock-bar"><div style="width: 40%;"></div></div><div class="subtle" style="font-size: 11px; margin-top: 4px;">8 of 20</div></td><td style="font-variant-numeric: tabular-nums; font-weight: 600;">₱10,098</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</div>
+</body>
+</html>

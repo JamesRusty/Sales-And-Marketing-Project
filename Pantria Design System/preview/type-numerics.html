@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Type — Numerics</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 24px 28px; background: var(--color-surface); display: flex; flex-direction: column; gap: 18px; font-variant-numeric: tabular-nums; }
+  .row { display: flex; align-items: baseline; gap: 24px; }
+  .meta { font-family: ui-monospace, monospace; font-size: 11px; color: var(--color-text-muted); }
+  .price-big { font-size: 36px; font-weight: 700; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+  .price-strike { color: var(--color-text-subtle); text-decoration: line-through; font-size: 18px; font-weight: 400; }
+  .price-sale { color: var(--color-accent-dark); font-weight: 700; font-size: 24px; }
+</style>
+</head>
+<body>
+  <div class="row"><span class="price-big">₱1,250.00</span><span class="meta">tabular nums · 36 / 700</span></div>
+  <div class="row"><span class="price-sale">₱899.00</span><span class="price-strike">₱1,099.00</span><span class="meta">sale + strike</span></div>
+  <div class="row"><span style="font-size:18px; font-weight:600; font-variant-numeric: tabular-nums;">25 kg</span><span style="font-size:18px; font-weight:600; font-variant-numeric: tabular-nums;">1 L</span><span style="font-size:18px; font-weight:600; font-variant-numeric: tabular-nums;">12 pcs</span><span class="meta">unit display</span></div>
+</body>
+</html>

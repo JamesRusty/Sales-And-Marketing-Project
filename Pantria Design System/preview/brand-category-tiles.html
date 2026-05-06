@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Category Tiles</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 24px; background: var(--color-surface); display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; }
+  .tile { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 14px 8px; border-radius: var(--radius-lg); background: var(--color-primary-tint); border: 1px solid transparent; transition: all 150ms var(--ease-out-quart); cursor: pointer; }
+  .tile:hover { background: var(--color-primary-soft); transform: translateY(-2px); }
+  .tile svg { width: 44px; height: 44px; }
+  .tile .name { font-size: 12px; font-weight: 600; color: var(--color-text); text-align: center; }
+</style>
+</head>
+<body>
+  <a class="tile"><img src="../assets/cat-rice.svg" width="44" height="44"><span class="name">Rice</span></a>
+  <a class="tile"><img src="../assets/cat-oil.svg" width="44" height="44"><span class="name">Cooking oil</span></a>
+  <a class="tile"><img src="../assets/cat-canned.svg" width="44" height="44"><span class="name">Canned</span></a>
+  <a class="tile"><img src="../assets/cat-beverages.svg" width="44" height="44"><span class="name">Beverages</span></a>
+  <a class="tile"><img src="../assets/cat-toiletries.svg" width="44" height="44"><span class="name">Toiletries</span></a>
+  <a class="tile"><img src="../assets/cat-frozen.svg" width="44" height="44"><span class="name">Frozen</span></a>
+  <a class="tile"><img src="../assets/cat-essentials.svg" width="44" height="44"><span class="name">Essentials</span></a>
+</body>
+</html>

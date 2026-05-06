@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Semantic colors</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--color-bg); display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .group { background: #fff; border-radius: 14px; padding: 14px; border: 1px solid var(--color-border); display: flex; flex-direction: column; gap: 10px; }
+  .role { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-muted); }
+  .lead { display: flex; align-items: center; gap: 10px; }
+  .chip { width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0; }
+  .meta { display: flex; flex-direction: column; gap: 1px; }
+  .name { font-size: 13px; font-weight: 700; color: var(--color-text); }
+  .hex { font-family: ui-monospace, monospace; font-size: 11px; color: var(--color-text-muted); }
+  .pair { display: flex; gap: 6px; }
+  .pair > div { flex: 1; height: 22px; border-radius: 6px; }
+  .demo { padding: 9px 12px; border-radius: 9999px; font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 6px; align-self: flex-start; }
+  .note { font-size: 11px; color: var(--color-text-muted); line-height: 1.4; margin-top: auto; }
+</style>
+</head>
+<body>
+
+  <!-- SUCCESS — uses brand primary green -->
+  <div class="group">
+    <div class="role">Success</div>
+    <div class="lead">
+      <div class="chip" style="background: #15803D;"></div>
+      <div class="meta"><span class="name">Brand green</span><span class="hex">#15803D</span></div>
+    </div>
+    <div class="pair">
+      <div style="background: #14532D;"></div>
+      <div style="background: #15803D;"></div>
+      <div style="background: #DCFCE7;"></div>
+    </div>
+    <div class="demo" style="background: #DCFCE7; color: #14532D;">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+      In stock
+    </div>
+    <div class="note">Order placed, in stock, payment received.</div>
+  </div>
+
+  <!-- WARNING — accent amber, the family color for promos and caution -->
+  <div class="group">
+    <div class="role">Warning</div>
+    <div class="lead">
+      <div class="chip" style="background: #D97706;"></div>
+      <div class="meta"><span class="name">Warm amber</span><span class="hex">#D97706</span></div>
+    </div>
+    <div class="pair">
+      <div style="background: #B45309;"></div>
+      <div style="background: #D97706;"></div>
+      <div style="background: #FEF3C7;"></div>
+    </div>
+    <div class="demo" style="background: #FEF3C7; color: #92400E;">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+      Only 4 left
+    </div>
+    <div class="note">Low stock, pending action, expiring soon.</div>
+  </div>
+
+  <!-- DANGER — earthy brick red, warmer to harmonize with green + amber -->
+  <div class="group">
+    <div class="role">Danger</div>
+    <div class="lead">
+      <div class="chip" style="background: #B91C1C;"></div>
+      <div class="meta"><span class="name">Brick red</span><span class="hex">#B91C1C</span></div>
+    </div>
+    <div class="pair">
+      <div style="background: #7F1D1D;"></div>
+      <div style="background: #B91C1C;"></div>
+      <div style="background: #FEE2E2;"></div>
+    </div>
+    <div class="demo" style="background: #FEE2E2; color: #7F1D1D;">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6"/><path d="M9 9l6 6"/></svg>
+      Sold out
+    </div>
+    <div class="note">Sold out, payment failed, errors.</div>
+  </div>
+
+  <!-- INFO — muted sage-tinted blue to stay in the warm-natural family -->
+  <div class="group">
+    <div class="role">Info</div>
+    <div class="lead">
+      <div class="chip" style="background: #0F766E;"></div>
+      <div class="meta"><span class="name">Deep teal</span><span class="hex">#0F766E</span></div>
+    </div>
+    <div class="pair">
+      <div style="background: #134E4A;"></div>
+      <div style="background: #0F766E;"></div>
+      <div style="background: #CCFBF1;"></div>
+    </div>
+    <div class="demo" style="background: #CCFBF1; color: #134E4A;">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+      Bulk pricing
+    </div>
+    <div class="note">Tips, bulk pricing, neutral system messages.</div>
+  </div>
+
+</body>
+</html>

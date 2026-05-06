@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Badges</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 24px; background: var(--color-surface); display: flex; flex-direction: column; gap: 14px; }
+  .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: var(--radius-pill); font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+  .badge-sale { background: var(--color-accent); color: var(--color-text); }
+  .badge-new  { background: var(--color-primary); color: #fff; }
+  .badge-bulk { background: var(--color-info-soft); color: var(--color-info); }
+  .badge-low  { background: var(--color-danger-soft); color: var(--color-danger); }
+  .badge-out  { background: var(--color-surface-2); color: var(--color-text-muted); }
+  .chip { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: var(--radius-pill); background: var(--color-surface-2); color: var(--color-text); font-size: 13px; font-weight: 500; border: 1px solid transparent; }
+  .chip.active { background: var(--color-primary-soft); color: var(--color-primary-darker); border-color: var(--color-primary); }
+  .label { font-size: 11px; font-weight: 600; color: var(--color-text-muted); letter-spacing: 0.06em; text-transform: uppercase; min-width: 90px; }
+</style>
+</head>
+<body>
+  <div class="row"><div class="label">Status</div>
+    <span class="badge badge-sale">Sale −15%</span>
+    <span class="badge badge-new">New</span>
+    <span class="badge badge-bulk">Bulk</span>
+    <span class="badge badge-low">Only 4 left</span>
+    <span class="badge badge-out">Sold out</span>
+  </div>
+  <div class="row"><div class="label">Category chips</div>
+    <span class="chip active">All</span>
+    <span class="chip">Rice</span>
+    <span class="chip">Cooking oil</span>
+    <span class="chip">Beverages</span>
+    <span class="chip">Toiletries</span>
+    <span class="chip">Frozen</span>
+  </div>
+</body>
+</html>
