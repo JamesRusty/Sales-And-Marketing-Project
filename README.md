@@ -1,6 +1,6 @@
-# Pantria — Design System & UI Kits
+# Daily Goods Co. — Design System & UI Kits
 
-Brand, design system, and clickable UI kits for **Pantria**, a modern grocery and pantry-supply service for households, sari-sari stores, restaurants, and resellers.
+Brand, design system, and clickable UI kits for **Daily Goods Co.**, a modern grocery and pantry-supply service for households, sari-sari stores, restaurants, and resellers.
 
 This repo contains:
 
@@ -80,4 +80,4 @@ Then visit:
 
 ## License
 
-© 2026 Pantria. All rights reserved.
+© 2026 Daily Goods Co.. All rights reserved.

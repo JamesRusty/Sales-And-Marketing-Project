@@ -1,6 +1,6 @@
 ---
-name: pantria-design
-description: Use this skill to generate well-branded interfaces and assets for Pantria, either for production or throwaway prototypes/mocks/etc. Contains essential design guidelines, colors, type, fonts, assets, and UI kit components for prototyping a modern grocery + wholesale ecommerce experience.
+name: daily-goods-design
+description: Use this skill to generate well-branded interfaces and assets for Daily Goods Co., either for production or throwaway prototypes/mocks/etc. Contains essential design guidelines, colors, type, fonts, assets, and UI kit components for prototyping a modern grocery + wholesale ecommerce experience.
 user-invocable: true
 ---
 
